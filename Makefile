@@ -2,10 +2,11 @@ REPO=integreatly
 INTEGREATLY_VERSION=1.0.1
 3SCALE_VERSION=0.8.0
 AMQSTREAMS_VERSION=1.1.0
+AMQONLINE_VERSION=1.1.0
 RHSSO_VERSION=1.6.1
 CODEREADY_VERSION=1.2.2
 
-push/all: push/integreatly push/amqstreams push/3scale push/rhsso push/codeready
+push/all: push/integreatly push/amqstreams push/3scale push/rhsso push/codeready push/amqonline
 
 push/integreatly:
 	operator-courier verify integreatly
@@ -19,7 +20,6 @@ push/3scale:
 	operator-courier verify 3scale
 	-operator-courier push 3scale/ $(REPO) 3scale $(3SCALE_VERSION) "$(AUTH_TOKEN)"
 
-
 push/rhsso:
 	operator-courier verify rhsso
 	-operator-courier push rhsso/ $(REPO) rhsso $(RHSSO_VERSION) "$(AUTH_TOKEN)"
@@ -28,5 +28,10 @@ push/codeready:
 	operator-courier verify codeready-workspaces
 	-operator-courier push codeready-workspaces/ $(REPO) codeready-workspaces $(CODEREADY_VERSION) "$(AUTH_TOKEN)"
 
+push/amqonline:
+	operator-courier verify amq-online
+	operator-courier push amq-online/ $(REPO) amq-online $(AMQONLINE_VERSION) "$(AUTH_TOKEN)"
+
 token/generate:
 	@curl -sH "Content-Type: application/json" -XPOST https://quay.io/cnr/api/v1/users/login -d '{"user": {"username": "$(QUAY_USERNAME)", "password": "${QUAY_PASSWORD}"}}' | jq -r '.token'
+	operator-courier push codeready-workspaces/ $(REPO) codeready-workspaces $(CODEREADY_VERSION) "$(AUTH_TOKEN)"
