@@ -1,7 +1,7 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
-  name: integreatlyoperator.1.0.1
+  name: integreatlyoperator.1.1.0
   namespace: placeholder
   annotations:
     alm-examples: "{}"
