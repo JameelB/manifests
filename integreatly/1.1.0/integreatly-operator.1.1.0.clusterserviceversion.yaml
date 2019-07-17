@@ -16,7 +16,7 @@ spec:
   displayName: Integreatly
   description: Integreatly installation and reconciliation operator
   keywords: ['integreatly']
-  version: 1.0.1
+  version: 1.1.0
   maturity: alpha
   minKubeVersion: 1.11.0
   maintainers:
